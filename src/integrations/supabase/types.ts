@@ -14,7 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      cartuchos: {
+        Row: {
+          alerta: number
+          cor: string
+          created_at: string
+          id: string
+          modelo: string
+          qty: number
+          updated_at: string
+        }
+        Insert: {
+          alerta?: number
+          cor: string
+          created_at?: string
+          id?: string
+          modelo: string
+          qty?: number
+          updated_at?: string
+        }
+        Update: {
+          alerta?: number
+          cor?: string
+          created_at?: string
+          id?: string
+          modelo?: string
+          qty?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      historico: {
+        Row: {
+          cartucho_id: string | null
+          created_at: string
+          data: string
+          id: string
+          impressora_id: string | null
+          obs: string | null
+          qty: number
+          responsavel: string
+          tipo: string
+          user_id: string | null
+        }
+        Insert: {
+          cartucho_id?: string | null
+          created_at?: string
+          data?: string
+          id?: string
+          impressora_id?: string | null
+          obs?: string | null
+          qty?: number
+          responsavel?: string
+          tipo?: string
+          user_id?: string | null
+        }
+        Update: {
+          cartucho_id?: string | null
+          created_at?: string
+          data?: string
+          id?: string
+          impressora_id?: string | null
+          obs?: string | null
+          qty?: number
+          responsavel?: string
+          tipo?: string
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "historico_cartucho_id_fkey"
+            columns: ["cartucho_id"]
+            isOneToOne: false
+            referencedRelation: "cartuchos"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "historico_impressora_id_fkey"
+            columns: ["impressora_id"]
+            isOneToOne: false
+            referencedRelation: "impressoras"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      impressoras: {
+        Row: {
+          cartuchos: string
+          created_at: string
+          id: string
+          local: string
+          modelo: string
+          nome: string
+          updated_at: string
+        }
+        Insert: {
+          cartuchos?: string
+          created_at?: string
+          id?: string
+          local?: string
+          modelo?: string
+          nome: string
+          updated_at?: string
+        }
+        Update: {
+          cartuchos?: string
+          created_at?: string
+          id?: string
+          local?: string
+          modelo?: string
+          nome?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
