@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import sescLogo from "@/assets/sesc-logo.png";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
