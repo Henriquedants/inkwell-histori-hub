@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
 import { toast } from "sonner";
+import sescLogo from "@/assets/sesc-logo.png";
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -32,9 +33,9 @@ const AuthPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-background p-4">
       <div className="w-full max-w-md bg-card border border-border rounded-2xl p-8">
-        <div className="flex items-center gap-2 mb-8 justify-center">
-          <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
-          <h1 className="text-xl font-bold tracking-tight">InkControl</h1>
+        <div className="flex flex-col items-center gap-3 mb-8">
+          <img src={sescLogo} alt="SESC Logo" width={120} height={120} className="object-contain" />
+          <h1 className="text-xl font-bold tracking-tight">Controle de Cartuchos</h1>
         </div>
 
         <h2 className="text-lg font-semibold mb-1 text-center">
