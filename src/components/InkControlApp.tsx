@@ -28,7 +28,7 @@ const InkControlApp = () => {
         <header className="sticky top-0 z-50 flex items-center justify-between px-7 py-3.5 bg-surface border-b border-border">
           <div className="flex items-center gap-2 font-bold text-lg tracking-tight">
             <div className="w-2 h-2 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary))]" />
-            InkControl
+            Controle de Cartuchos
           </div>
           <nav className="flex gap-1">
             {tabs.map((tab) => (
