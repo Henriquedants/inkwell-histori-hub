@@ -4,7 +4,6 @@ import { toast } from "sonner";
 import sescLogo from "@/assets/sesc-logo.png";
 
 const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,15 +13,9 @@ const AuthPage = () => {
     setLoading(true);
 
     try {
-      if (isLogin) {
-        const { error } = await supabase.auth.signInWithPassword({ email, password });
-        if (error) throw error;
-        toast.success("Login realizado com sucesso!");
-      } else {
-        const { error } = await supabase.auth.signUp({ email, password });
-        if (error) throw error;
-        toast.success("Conta criada! Verifique seu email.");
-      }
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) throw error;
+      toast.success("Login realizado com sucesso!");
     } catch (error: any) {
       toast.error(error.message);
     } finally {
@@ -38,11 +31,9 @@ const AuthPage = () => {
           <h1 className="text-xl font-bold tracking-tight">Controle de Cartuchos</h1>
         </div>
 
-        <h2 className="text-lg font-semibold mb-1 text-center">
-          {isLogin ? "Entrar" : "Criar Conta"}
-        </h2>
+        <h2 className="text-lg font-semibold mb-1 text-center">Entrar</h2>
         <p className="text-sm text-muted-foreground text-center mb-6">
-          {isLogin ? "Faça login para acessar o sistema" : "Crie sua conta para começar"}
+          Faça login para acessar o sistema
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -79,18 +70,12 @@ const AuthPage = () => {
             disabled={loading}
             className="w-full bg-primary text-primary-foreground font-bold py-2.5 rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50"
           >
-            {loading ? "Aguarde..." : isLogin ? "Entrar" : "Criar Conta"}
+            {loading ? "Aguarde..." : "Entrar"}
           </button>
         </form>
 
-        <p className="text-sm text-muted-foreground text-center mt-6">
-          {isLogin ? "Não tem conta?" : "Já tem conta?"}{" "}
-          <button
-            onClick={() => setIsLogin(!isLogin)}
-            className="text-primary font-semibold hover:underline"
-          >
-            {isLogin ? "Criar conta" : "Fazer login"}
-          </button>
+        <p className="text-xs text-muted-foreground text-center mt-6">
+          Acesso restrito. Solicite suas credenciais ao administrador.
         </p>
       </div>
     </div>
